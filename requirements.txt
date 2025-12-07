@@ -6,4 +6,3 @@ transformers>=4.40.0
 pillow>=10.0.0
 accelerate>=0.30.0
 numpy==1.26.0
-vllm==0.8.5
