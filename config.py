@@ -8,7 +8,7 @@ import httpx
 
 # API Keys
 YANDEX_API_KEY = os.getenv("YANDEX_MAPS_API_KEY", "")
-ORS_API_KEY = os.getenv("ORS_API_KEY", "")
+ORS_API = os.getenv("ORS_API", "")
 
 # Flags
 YANDEX_MOCK = os.getenv("YANDEX_MAPS_MOCK", "false").lower() == "true"
@@ -28,4 +28,4 @@ class AppDeps:
     http_client: httpx.AsyncClient
     yandex_api_key: str = YANDEX_API_KEY
     yandex_mock: bool = YANDEX_MOCK
-    ors_api_key: str = ORS_API_KEY
+    ors_api_key: str = ORS_API

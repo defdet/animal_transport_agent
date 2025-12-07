@@ -46,7 +46,7 @@ async def get_route_estimate(
         )
 
     if not ctx.deps.ors_api_key:
-        raise RuntimeError("ORS_API_KEY is not set")
+        raise RuntimeError("ORS_API is not set")
 
     # Geocode addresses
     lat1, lon1 = await geocode_address(ctx, origin)
