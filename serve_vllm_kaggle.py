@@ -4,8 +4,10 @@ import os
 from openai import OpenAI
 QWEN_API_BASE = os.getenv("QWEN_API_BASE", "0.0.0.0:8000/v1")
 
+# This code was taken from a public notebook shared at AIMO 3 competition with some adjustments
+
 def await_client(printing: bool = False):
-    for _ in range(15 * 60):
+    for _ in range(15 * 60): # Ugly looking timeout logic
         time.sleep(1)
         try:
             model_list = client.models.list()

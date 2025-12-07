@@ -1,5 +1,5 @@
 """
-Florence-2 image captioning for animal identification.
+Image captioning with really lightweight model
 """
 import os
 import torch
@@ -8,17 +8,14 @@ from transformers import AutoProcessor, AutoModelForCausalLM
 from config import CAPTION_MODEL_ID
 
 
-# Global model storage
 _caption_processor = None
 _caption_model = None
 _caption_device = None
 
 
 def initialize_captioning_model():
-    """Load Florence-2 model at startup (call once)."""
     global _caption_processor, _caption_model, _caption_device
     
-    print("Loading Florence-2-base for image captioning...")
     _caption_device = "cuda" if torch.cuda.is_available() else "cpu"
     
     _caption_processor = AutoProcessor.from_pretrained(
@@ -31,8 +28,6 @@ def initialize_captioning_model():
         trust_remote_code=True,
     ).to(_caption_device)
     _caption_model.eval()
-    
-    print(f"Florence-2-base loaded on {_caption_device}")
 
 
 def caption_image(image_path: str, max_size: int = 1024) -> str:
@@ -46,8 +41,6 @@ def caption_image(image_path: str, max_size: int = 1024) -> str:
     Returns:
         Caption text for agent context
     """
-    if _caption_model is None:
-        raise RuntimeError("Captioning model not initialized. Call initialize_captioning_model() first.")
     
     try:
         # Load and pre-resize
@@ -64,9 +57,9 @@ def caption_image(image_path: str, max_size: int = 1024) -> str:
             return_tensors="pt"
         )
         
-        # Move to device and adjust dtype
+        # Make sure dtype is the same with model weights
         inputs = {k: v.to(_caption_device) for k, v in inputs.items()}
-        if _caption_device == "cuda" and "pixel_values" in inputs:
+        if "pixel_values" in inputs:
             inputs["pixel_values"] = inputs["pixel_values"].to(torch.float16)
         
         with torch.inference_mode():
@@ -93,7 +86,7 @@ def caption_image(image_path: str, max_size: int = 1024) -> str:
         
     except Exception as e:
         base = os.path.basename(image_path)
-        print(f"[Warning] Captioning failed: {e}")
+        print(f"Captioning failed: {e}")
         return (
             f"User provided photo '{base}'. Unable to analyze automatically. "
             f"Assume single animal of unknown type, medium size (~20-30 kg)."

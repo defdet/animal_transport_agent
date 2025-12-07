@@ -31,7 +31,7 @@ async def get_route_estimate(
     Returns:
         RouteEstimate with distance, duration, and coordinates
     """
-    # Mock mode for testing
+    # Mock mode if we hit our limits
     if ctx.deps.yandex_mock:
         return RouteEstimate(
             origin_query=origin,
@@ -86,7 +86,7 @@ async def get_route_estimate(
     distance_km = distance_m / 1000.0 if distance_m else 0.0
     duration_minutes = int(round(duration_s / 60.0)) if duration_s else 0
 
-    print(f"Distance: {distance_km} km")
+    #print(f"Distance: {distance_km} km")
     
     return RouteEstimate(
         origin_query=origin,

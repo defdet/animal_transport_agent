@@ -1,5 +1,5 @@
 """
-Configuration and environment variables for Animal Transport Agent.
+Configuration and environment variables for Agent.
 """
 import os
 from dataclasses import dataclass

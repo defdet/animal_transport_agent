@@ -1,5 +1,5 @@
 """
-Yandex Geocoder service for address → coordinates conversion.
+Yandex Geocoder service for address to coordinates conversion.
 """
 from pydantic_ai import RunContext
 from config import AppDeps
