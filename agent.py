@@ -19,7 +19,7 @@ def create_agent() -> Agent[AppDeps]:
         api_key=OPENAI_API_KEY,
     )
 
-    settings = ModelSettings(temperature=0.6)
+    settings = ModelSettings(temperature=0.1)
 
     model = OpenAIChatModel(
         QWEN_MODEL_NAME,
