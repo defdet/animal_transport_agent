@@ -54,7 +54,7 @@ def create_agent() -> Agent[AppDeps]:
             "bicycle": "cycling-regular",
         }
         profile = profile_map.get(transport_hint or "car", "driving-car")
-        print(f"ROUTE TOOL CALLED FOR {profile}")  # Some models (e.x. Qwen 2.5 VL) like to simulate tool calling. Wanna make sure tool is actually called
+        print(f"ROUTE TOOL CALLED FOR {profile}. FROM {origin} TO {destination}")  # Some models (e.x. Qwen 2.5 VL) like to simulate tool calling. Wanna make sure tool is actually called
         return await get_route_estimate(ctx, origin, destination, profile=profile)
 
     # Tool 2: Weather forecast
