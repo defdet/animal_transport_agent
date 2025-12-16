@@ -51,8 +51,8 @@ async def main() -> None:
     async with httpx.AsyncClient() as client:
         deps = AppDeps(http_client=client)
 
-        print("🐾 Animal Transport Assistant (Pydantic AI + Qwen2.5-7B)")
-        print("Multi-turn conversation enabled. Empty text → exit.\n")
+        print("Animal Transport Assistant based on Qwen 2.5-7B")
+        print("Empty text → exit.\n")
 
         message_history = []
 
@@ -76,3 +76,4 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
+
