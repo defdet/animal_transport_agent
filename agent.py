@@ -46,7 +46,6 @@ def create_agent() -> Agent[AppDeps]:
         
         Uses Yandex Geocoder for addresses and OpenRouteService for routing.
         """
-        print("ROUTE TOOL CALLED") # Some models (e.x. Qwen 2.5 VL) like to simulate tool calling. Wanna make sure tool is actually called
 
         profile_map = {
             "car": "driving-car",
@@ -55,6 +54,7 @@ def create_agent() -> Agent[AppDeps]:
             "bicycle": "cycling-regular",
         }
         profile = profile_map.get(transport_hint or "car", "driving-car")
+        print(f"ROUTE TOOL CALLED FOR {profile}")  # Some models (e.x. Qwen 2.5 VL) like to simulate tool calling. Wanna make sure tool is actually called
         return await get_route_estimate(ctx, origin, destination, profile=profile)
 
     # Tool 2: Weather forecast
