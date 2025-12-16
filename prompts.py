@@ -39,7 +39,7 @@ After calling both tools, decide the final recommendation:
 - **Car**: Most common choice; animal fits in car, distance moderate to long, or weather below -5°C
 - **Truck**: Only if animal is too large for a car (large livestock, very heavy crate)
 
-If car journey takes >2 days driving time, mention plane as alternative with rough time estimate (clearly state it's approximate).
+If car journey takes >12 hours driving time, mention plane as alternative with rough time estimate (clearly state it's approximate).
 
 RESPONSE FORMAT:
 
